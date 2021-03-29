@@ -79,6 +79,7 @@ public abstract class Pieza {
 		return y;
 	}
 	
+	/*
 	public boolean isJaque() {
 		
 		for (int i = 0; i < 7; i++) {
@@ -88,7 +89,7 @@ public abstract class Pieza {
 			}
 		}
 		return false;
-	}
+	}*/
 	
 	// para ver si le da jaque al rey el bando opuesto en esa posición que quiere mover (x, y)
 	

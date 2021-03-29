@@ -231,7 +231,11 @@ public class Tablero extends JComponent {
 		else return null;
 	}
 	
-
+	public void resign() {
+		partida.setResultado(Resultado.BLANCAS);
+		BoardFrame.getBoardFrame().addExportButton();
+	}
+	
 	private void drawBoard()
 	{
 		Piece_Graphics.clear();
@@ -350,8 +354,8 @@ public class Tablero extends JComponent {
 					BoardFrame.getBoardFrame().addDato(String.valueOf(turnCounter/2+1), turnCounter/2, 0);
 				}
 				
-				
-				Jugada j = new Jugada(Active_Piece, Clicked_Column, Clicked_Row, Active_Piece.getHaComido(), Active_Piece.isJaque(), false);
+				// no check and no checkmate at the moment by bug (should fix canMove() from pieces by notation failure)
+				Jugada j = new Jugada(Active_Piece, Clicked_Column, Clicked_Row, Active_Piece.getHaComido(), false, false);
 				partida.addJugada(j);
 				
 				

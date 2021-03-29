@@ -36,8 +36,6 @@ public class Rey extends Pieza{
         setHaComido(false);
     	int distanciaX = Math.abs(destination_x - this.getX());
     	int distanciaY = Math.abs(destination_y - this.getY());
-    	enroque_corto = false;
-    	enroque_largo = false;
     	
     	Pieza aux = tablero.getPiece(destination_x, destination_y);
     	if (distanciaX <= 1 && distanciaY <= 1) {
@@ -49,6 +47,7 @@ public class Rey extends Pieza{
     					return false;
     				}
     				setHaComido(true);
+    		    	enroque_corto = false;
     				return true;
     			}
     			if (this.isBlack() && aux.isWhite()) {

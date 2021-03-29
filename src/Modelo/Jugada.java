@@ -11,6 +11,8 @@ public class Jugada {
 	private boolean ha_comido;
 	private boolean jaque;
 	private boolean jaque_mate;
+	private boolean enroque_corto = false;
+	private boolean enroque_largo = false;
 	
 	// el movimiento que hace una pieza a una posición, y si ha o no comido
 	public Jugada(Pieza p, int x, int y, boolean ha_comido, boolean jaque, boolean jaque_mate) {
@@ -35,12 +37,10 @@ public class Jugada {
 		else if (p instanceof Rey && ((Rey) p).getEnroqueLargo()) notacion = "0-0-0";
 		else {
 			
-			System.out.println(p.getHaComido());
-			
-			if(p instanceof Peon && p.getHaComido())notacion = Character.toString((char)(8-p.getX()+96)); // el peon es solo si come			
+			if(p instanceof Peon && ha_comido)notacion = Character.toString((char)(8-x+((Peon) p).getLastMove()+96)); // el peon es solo si come			
 			if(p instanceof Alfil)notacion = "B"; // Bishop
-			if(p instanceof Peon)notacion = ""; // pawn
-			if(p instanceof Caballo)notacion = "K"; // kNight
+			if(p instanceof Peon && !ha_comido)notacion = ""; // pawn
+			if(p instanceof Caballo)notacion = "N"; // kNight
 			if(p instanceof Dama)notacion = "Q"; // Queen
 			if(p instanceof Rey)notacion = "K"; // King
 			if(p instanceof Torre)notacion = "R"; // Rook

@@ -4,6 +4,7 @@ public class Peon extends Pieza {
 
     //private boolean has_moved;
     private boolean mover_doble;
+    private int last_move;
     
     public Peon(int x, int y, boolean is_white, Tablero tablero)
     {
@@ -19,10 +20,14 @@ public class Peon extends Pieza {
     	return mover_doble;
     }
     
+    public int getLastMove() {
+		return last_move;
+	}
+    
     @Override
     public boolean canMove(int destination_x, int destination_y)
     {
-    	
+    	last_move = 0;
     	// si eres blancas, va hacia arriba
     	Pieza aux = tablero.getPiece(destination_x, destination_y);
     	mover_doble = false;
@@ -46,12 +51,12 @@ public class Peon extends Pieza {
 
     
     		if ((destination_y - this.getY() == 1) && destination_x == this.getX() && aux== null) { // uno hacia delante y no hay pieza
-
     			return true;
     		}
     		
     		if (destination_y - this.getY() == 1 && Math.abs(destination_x - this.getX()) == 1 && aux != null && aux.isBlack()) {
     			setHaComido(true);
+    			last_move = destination_x - this.getX();
     			return true;
     		}
     		
@@ -97,13 +102,14 @@ public class Peon extends Pieza {
 
     		if ((destination_y - this.getY() == -1) && destination_x == this.getX() && aux== null) { // uno hacia delante
     			
-
+    			
     			return true;
     		}
 
     		if (destination_y - this.getY() == -1 && Math.abs(destination_x - this.getX()) == 1 && aux != null && aux.isWhite()) {
     			
     			setHaComido(true);
+    			last_move = destination_x - this.getX();
     			return true;
     		}
     		

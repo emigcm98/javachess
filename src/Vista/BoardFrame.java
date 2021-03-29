@@ -133,6 +133,15 @@ public class BoardFrame extends JFrame {
         
         this.add(scrollpane, BorderLayout.EAST);
         
+        jButtonResign.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// el jugador pierde
+				tablero.resign();			
+			}
+		});
+        
         // EXPORT TO PGN
         
         jButtonExport.addActionListener(new ActionListener() {
